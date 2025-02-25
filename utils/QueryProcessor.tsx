@@ -12,15 +12,10 @@ export default function QueryProcessor(query: string): string {
       "anikas"
     );
   }
+  
 
   if (query.toLowerCase().includes("name")) {
-    return (
-      "Anika Sharma"
-    );
-  }
-
-  if (query.toLowerCase().includes("name")) {
-    return "Rohan";
+    return "Anika Sharma";
   }
 
   return "";
