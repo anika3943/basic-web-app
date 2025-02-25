@@ -17,10 +17,11 @@ export default function QueryProcessor(query: string): string {
     return "Anika Sharma";
   }
 
+  
   if (query.includes("plus")) {
     let numbers = query.match(/\d+/g);
-    if (numbers && numbers.length === 2) {
-      return `${parseInt(numbers[0], 10) + parseInt(numbers[1], 10)}`;
+    if (numbers) {
+      return `${numbers.map(num => parseInt(num, 10)).reduce((a, b) => a + b, 0)}`;
     }
   }
 
