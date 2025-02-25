@@ -24,6 +24,14 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.includes("minus")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length === 2) {
+      return `${parseInt(numbers[0], 10) - parseInt(numbers[1], 10)}`;
+    }
+  }
+
+
   if (query.includes("largest")) {
     let numbers = query.match(/\d+/g);
     if (numbers) {
@@ -68,6 +76,15 @@ export default function QueryProcessor(query: string): string {
         .filter(isPrime);
 
       return primeNumbers.length > 0 ? primeNumbers.join(", ") : "None";
+    }
+  }
+
+  if (query.includes("to the power of")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length === 2) {
+      let base = parseInt(numbers[0], 10);
+      let exponent = parseInt(numbers[1], 10);
+      return `${Math.pow(base, exponent)}`;
     }
   }
 
