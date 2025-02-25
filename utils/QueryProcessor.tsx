@@ -21,14 +21,18 @@ export default function QueryProcessor(query: string): string {
   }
 
   if (query.includes("plus")) {
-    let numbers = query.match(/\d+/g).map(Number);
-    return numbers[0] + numbers[1];
-  }
+    let numbers = query.match(/\d+/g);
+    if (numbers && numbers.length === 2) {
+        return `${parseInt(numbers[0], 10) + parseInt(numbers[1], 10)}`;
+    }
+}
 
-  if (query.includes("largest")) {
-      let numbers = query.match(/\d+/g).map(Number);
-      return Math.max(...numbers);
-  }
+if (query.includes("largest")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers) {
+        return `${Math.max(...numbers.map(num => parseInt(num, 10)))}`;
+    }
+}
 
   return "";
 }
