@@ -34,5 +34,12 @@ if (query.includes("largest")) {
     }
 }
 
+if (query.includes("multiplied")) {
+  let numbers = query.match(/\d+/g);
+  if (numbers) {
+      return `${parseInt(numbers[0], 10) * parseInt(numbers[1], 10)}`;
+  }
+}
+
   return "";
 }
