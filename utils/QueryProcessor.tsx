@@ -7,6 +7,8 @@ export default function QueryProcessor(query: string): string {
     );
   }
 
+  query = query.toLowerCase();
+
   if (query.toLowerCase().includes("andrew")) {
     return (
       "anikas"
@@ -18,8 +20,14 @@ export default function QueryProcessor(query: string): string {
     return "Anika Sharma";
   }
 
-  if (query.toLowerCase().includes("Which of the following numbers is the largest: 27, 78, 61?	")) {
-    return "78";
+  if (query.includes("plus")) {
+    let numbers = query.match(/\d+/g).map(Number);
+    return numbers[0] + numbers[1];
+  }
+
+  if (query.includes("largest")) {
+      let numbers = query.match(/\d+/g).map(Number);
+      return Math.max(...numbers);
   }
 
   return "";
