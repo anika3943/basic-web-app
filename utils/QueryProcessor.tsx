@@ -52,5 +52,24 @@ export default function QueryProcessor(query: string): string {
     }
   }
 
+  if (query.includes("prime")) {
+    let numbers = query.match(/\d+/g);
+    if (numbers) {
+      let isPrime = (num: number): boolean => {
+        if (num < 2) return false;
+        for (let i = 2; i * i <= num; i++) {
+          if (num % i === 0) return false;
+        }
+        return true;
+      };
+
+      let primeNumbers = numbers
+        .map(num => parseInt(num, 10))
+        .filter(isPrime);
+
+      return primeNumbers.length > 0 ? primeNumbers.join(", ") : "None";
+    }
+  }
+
   return "";
 }
